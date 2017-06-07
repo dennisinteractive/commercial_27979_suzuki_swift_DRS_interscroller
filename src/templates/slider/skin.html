@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- build:css({src,.tmp}) css/main.css -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- endbuild -->
+
+    <!-- [pictela_adtech] -->
+
+  </head>
+  <body>
+    <!-- Needed to trigger the advert -->
+    <div class="fake-trigger"></div>
+
+    <!-- Gutters -->
+    <div class="container">
+      <div class="gutter left-gutter">
+        <div class="logo logo-main"></div>
+        <h1 class="heading main-heading">Gutter<br />heading</h1>
+        <h3 class="heading sub-heading">Sub heading</h3>
+        <span class="btn btn-primary">Fake button</span>
+      </div>
+      <div class="gutter right-gutter">
+        <div class="logo logo-main"></div>
+        <h1 class="heading main-heading">Gutter<br />heading</h1>
+        <h3 class="heading sub-heading">Sub heading</h3>
+        <span class="btn btn-primary">Fake button</span>
+      </div>
+    </div>
+
+    <!-- Main advert -->
+    <div class="advert-container hidden">
+      <div id="advert" class="main-container">
+        <div class="advert-inner-container container">
+          <i id="close-ad-btn" class="btn btn-close"></i>
+          <div class="logo logo-main"></div>
+          <h1 class="heading main-heading">Advert heading</h1>
+          <a class="btn btn-primary simple-modal" href="#">Click me</a>
+
+          <div id="content">
+            <h3>Modal example</h3>
+            <p>This is an example of a modal popup using the simple-modal plugin</p>
+            <a href="https://github.com/matt3188/simple-modal" target="_blank">View on Github</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  <!-- build:js({src,.tmp}) js/advert.js -->
+
+  <!-- bower:js -->
+  <!-- endbower -->
+
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+
+  <script>
+    ADTECH.ready(function() {
+
+      var body = document.querySelector( 'body' );
+      var backgroundImage = ADTECH.getContent( 'skin background', '../images/skin-background.png' );
+
+      // Get current host name
+      var currentHost = document.referrer;
+
+      // Firefox and IE
+      if ( currentHost === '' ) {
+        currentHost = document.baseURI;
+      }
+
+      var getLocation = function( href ) {
+        var l = document.createElement( 'a' );
+        l.href = href;
+        return l;
+      };
+
+      var l = getLocation(currentHost);
+      var loc = l.hostname;
+
+      // Add class to body
+      switch ( loc ) {
+        case 'www.evo.co.uk':
+          body.classList.add( 'evo' );
+          break;
+        case 'www.carbuyer.co.uk':
+          body.classList.add( 'carbuyer' );
+          break;
+        case 'www.autoexpress.co.uk':
+          body.classList.add( 'auto-express' );
+          break;
+      }
+
+      function loadJSON( callback ) {
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType( 'application/json' );
+        xobj.open( 'GET', 'adConfig.json', true );
+        xobj.onreadystatechange = function () {
+          if ( xobj.readyState == 4 && xobj.status == '200' ) {
+            // Required use of an anonymous callback as .open will NOT return a value but
+            // simply returns undefined in asynchronous mode
+            callback( xobj.responseText );
+          }
+        };
+        xobj.send( null );
+      }
+
+      loadJSON(function( response ) {
+        // Parse JSON string into object
+        var sliderConfig = JSON.parse(response);
+        var flightID;
+
+        // If we are local we still want to set flightID manually
+        if ( document.URL.indexOf( 'localhost' ) >= 0 ) {
+          flightID = 'local';
+        } else {
+          flightID = ADTECH.adConfig.adServerVars.id;
+        }
+
+        var backgroundX = sliderConfig['flights'][flightID]['background-x'];
+        var backgroundY = sliderConfig['flights'][flightID]['background-y'];
+
+        body.setAttribute( 'style', 'background-image: url("' + backgroundImage + '"); background-position:' + backgroundX + ' ' + backgroundY + ';' );
+
+      });
+
+    });
+  </script>
+</html>

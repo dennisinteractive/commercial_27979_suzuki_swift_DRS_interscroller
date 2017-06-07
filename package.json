@@ -1,0 +1,87 @@
+{
+  "name": "suzuki-swift-drs",
+  "version": "0.0.1",
+  "description": "Advert template for Dennis Publishing.",
+  "author": "Dennis Publishing",
+  "contributors": [
+    {
+      "name": "Matt Coleman",
+      "email": "<matt_coleman@dennis.co.uk>"
+    },
+    {
+      "name": "Cristina Llamas",
+      "email": "<cristina_roman@dennis.co.uk>"
+    }
+  ],
+  "private": true,
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
+    "eslint-stylish-config": "0.0.2",
+    "grunt": "^1.0.1",
+    "grunt-aws-s3": "^0.14.5",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-bump": "^0.8.0",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compress": "^1.3.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^2.0.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^18.1.0",
+    "grunt-ftp-push": "^1.1.0",
+    "grunt-generate": "^0.3.2",
+    "grunt-inline": "^0.3.6",
+    "grunt-newer": "^1.2.0",
+    "grunt-postcss": "^0.8.0",
+    "grunt-prompt": "^1.3.3",
+    "grunt-rev": "^0.1.0",
+    "grunt-sass": "^1.2.0",
+    "grunt-shell": "^1.3.0",
+    "grunt-string-replace": "^1.2.1",
+    "grunt-svgmin": "^3.2.0",
+    "grunt-template": "^0.2.3",
+    "grunt-usemin": "^3.1.1",
+    "grunt-wiredep": "^3.0.1",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-configs": "^1.0.0",
+    "time-grunt": "^1.3.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": "warn",
+      "quotes": [
+        2,
+        "single"
+      ],
+      "indent": [
+        2,
+        2
+      ]
+    }
+  },
+  "advert": {
+    "client": "Suzuki",
+    "name": "Suzuki Swift DRS",
+    "campaign": "Suzuki Swift ",
+    "template": "default",
+    "job": "27979"
+  }
+}

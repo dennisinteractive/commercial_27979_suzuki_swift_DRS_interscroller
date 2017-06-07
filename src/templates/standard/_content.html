@@ -1,0 +1,72 @@
+    <style>
+      body {
+        margin: 20px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.1;
+        color: #333;
+        background-color: #F3F3F3;
+        text-align: center;
+      }
+      .heading {
+        text-transform: capitalize;
+      }
+    </style>
+
+    <script>
+      var urls = ['<!--URLS-->'];
+
+      // Loop through above values
+      for ( var i = urls.length - 1; i >= 0; i-- ) {
+        var request;
+        if ( window.XMLHttpRequest ) {
+          request = new XMLHttpRequest();
+        } else {
+          request = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+
+        // Deal with the ones that open
+        if ( request.status !== 404 ) {
+          var iframe = document.createElement('iframe');
+          iframe.setAttribute( 'src', window.location + urls[i] );
+          iframe.setAttribute( 'id', urls[i] );
+          iframe.setAttribute( 'frameborder', 0 );
+          document.body.appendChild( iframe );
+
+          // Run our function below
+          addDims(urls[i]);
+
+          // Add and tidy up a handy title
+          // ie. Remove the .html from our string
+          var words = urls[i];
+          var titles = words.slice( 0, -11 );
+
+          titleEl = document.createElement( 'h2' );
+          titleEl.innerHTML = titles;
+          titleEl.classList.add( 'heading' );
+
+          var list = document.getElementById( urls[i] );
+          list.parentNode.insertBefore( titleEl, list.parent );
+        }
+      }
+
+      function addDims( urls ) {
+        document.getElementById(urls).onload = function() {
+          // Select iframe and retrieve data from inside them
+          var iframe = document.getElementById( urls );
+          var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+          var form = doc.head;
+          var element = form.querySelector( 'meta[name="ad-size"]' ).content;
+
+          // Strip out our values
+          var str = element.split( 'width=' );
+          var height = element.split( ',height=' );
+          var width = str.toString().split(',');
+
+          // Set them as attributes on the iframes
+          iframe.setAttribute( 'height', height[1] );
+          iframe.setAttribute( 'width', width[1] );
+        };
+      }
+
+    </script>

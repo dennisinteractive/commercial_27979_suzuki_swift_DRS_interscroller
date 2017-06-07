@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="ad.size" content="width=300,height=250">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        border: 0;
+        outline: none;
+        border-style: none;
+      }
+      #mpu {
+        height: 250px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: 300px 250px;
+        background-image: url('../images/mpu.png');
+      }
+    </style>
+    <script src="http://ads.pictela.com/jsapi/ADTECH.js"></script>
+  </head>
+
+  <body>
+    <div id="mpu"></div>
+  </body>
+
+  <script type="text/javascript">
+    ADTECH.ready(function() {
+      document.querySelector( '#mpu' ).addEventListener( 'click', openAdvert );
+
+      function openAdvert() {
+        var pictelaAdId = 255536;
+        var adManager = adtechAdManager_2_58_0;
+
+        for ( var advertKey in top.adManager.adverts ) {
+          if ( top.adManager.adverts.hasOwnProperty( advertKey ) ) {
+            var advert =  top.adManager.adverts[advertKey];
+            if ( advert.canvasId == pictelaAdId ) {
+              advert.getAssetContainer( 'main' ).content.dispatchAdvertLevelEvent( 'show' );
+              break;
+            }
+          }
+        }
+        ADTECH.show();
+      }
+    });
+  </script>
+</html>

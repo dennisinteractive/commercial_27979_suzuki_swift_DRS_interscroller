@@ -1,0 +1,44 @@
+.advert-container {
+  padding: 20px;
+  text-align: center;
+  transform: translate3d(0,100%,0);
+  opacity: 0;
+  transition: opacity 1s, transform 1s;
+}
+
+.on-screen {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+
+.logo {
+
+  &.main-logo {
+    max-width: 220px;
+    -webkit-filter: drop-shadow(0 2px 1px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 1px rgba(0,0,0,0.5));
+  }
+}
+
+.btn {
+  margin: 0;
+  outline: 0;
+  border: 0;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all .1s linear;
+
+  &.btn-standard {
+    display: inline-block;
+    color: #FFF;
+    background-color: #0092f0;
+    padding: 10px 20px;
+    box-shadow: 0 5px 0 darken(#0092f0, 20%);
+
+    &:active {
+      box-shadow: 0 2px 0 darken(#0092f0, 20%);
+      transform: translateY(3px);
+    }
+  }
+}

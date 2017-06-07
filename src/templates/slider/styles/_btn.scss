@@ -1,0 +1,56 @@
+// Buttons
+
+.btn {
+  margin: 0;
+  outline: 0;
+  border: 0;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all .1s linear;
+
+  &.btn-primary {
+    display: inline-block;
+    color: #FFF;
+    background-color: $light-blue;
+    padding: 10px 20px;
+    box-shadow: 0 5px 0 darken($light-blue, 20%);
+
+    &:active {
+      box-shadow: 0 2px 0 darken($light-blue, 20%);
+      transform: translateY(3px);
+    }
+  }
+
+  &.btn-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 5px 10px;
+    z-index: 999;
+    font-style: normal;
+    background-color: #FFF;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #AAA;
+    border-radius: 50%;
+
+    &:active {
+      box-shadow: 0 2px 0 #AAA;
+      transform: translateY(3px);
+    }
+
+    &:before {
+      content: 'X';
+      font-weight: 900;
+    }
+  }
+
+  // Modal popup close-btn
+  &.close-btn {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="ad.size" content="width=728,height=90">
+    <style>
+      body {
+        padding: 0;
+        margin: 0 auto;
+        background-color: #000;
+      }
+      a {
+        border: 0;
+        outline: none;
+        border-style: none;
+      }
+      #leaderboard {
+        position: relative;
+        width: 728px;
+        height: 90px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: top center;
+      }
+      .text {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+      }
+    </style>
+    <script src="http://ads.pictela.com/jsapi/ADTECH.js"></script>
+  </head>
+
+  <body>
+    <div id="leaderboard"><div class="text"></div></div>
+  </body>
+
+  <script type="text/javascript">
+
+    ADTECH.ready(function() {
+
+      // Leaderboard object
+      var leaderboard = {
+        leader: '#leaderboard',
+        leaderText: '.text',
+        backgroundImage: ADTECH.getContent( 'leader skin background', '../images/skin-background.png' ),
+        leaderImage: ADTECH.getContent( 'leader text', '../images/leaderboard.png' ),
+        currentHost: document.referrer,
+
+        location: function() {
+          // Firefox and IE
+          if ( leaderboard.currentHost === '' ) {
+            leaderboard.currentHost = document.baseURI;
+          }
+
+          var getLocation = function( href ) {
+            var l = document.createElement( 'a' );
+            l.href = href;
+            return l;
+          };
+
+          var l = getLocation( leaderboard.currentHost );
+          var loc = l.hostname;
+          return loc;
+        },
+        loadJSON: function( callback ) {
+          var xobj = new XMLHttpRequest();
+          xobj.overrideMimeType( 'application/json' );
+          xobj.open( 'GET', 'adConfig.json', true );
+          xobj.onreadystatechange = function() {
+            if( xobj.readyState == 4 && xobj.status == '200' ) {
+              // Required use of an anonymous callback as .open will NOT return a value but
+              // simply returns undefined in asynchronous mode
+              callback( xobj.responseText );
+            }
+          };
+          xobj.send( null );
+        }
+      };
+
+      // Trigger advert
+      function openAdvert() {
+        ADTECH.show();
+      }
+      document.querySelector( leaderboard.leader ).addEventListener( 'click', openAdvert );
+
+      // Load in our config file for the background posistion
+      leaderboard.loadJSON(function( response ) {
+        // Parse JSON string into object
+        var sliderConfig = JSON.parse( response );
+        // If developing fallback to 'localhost'
+        if ( document.URL.indexOf( 'localhost' ) >= 0 ) {
+          flightID = 'local';
+        } else {
+          flightID = ADTECH.adConfig.adServerVars.id;
+        }
+        // Set our variables for X-Y positions
+        inpageX = sliderConfig['flights'][flightID]['in-page-x'];
+        inpageY = sliderConfig['flights'][flightID]['in-page-y'];
+
+        // Set leaderboard background image
+        document.querySelector( leaderboard.leader ).setAttribute( 'style', 'background-image: url("' + leaderboard.backgroundImage + '"); background-position: ' + inpageX + ' ' + inpageY + ';' );
+        // Set leaderboard text
+        document.querySelector( leaderboard.leaderText ).setAttribute( 'style', 'background-image: url("' + leaderboard.leaderImage + '");' );
+      });
+
+      // Actions based upon location of advert
+      switch ( leaderboard.location() ) {
+        case 'localhost':
+          document.querySelector( leaderboard.leader ).classList.add( 'local' );
+          break;
+        case 'carbuyer/reviews':
+          console.log('Carbuyer working');
+          break;
+        case 'www.evo.co.uk/volvo/v40':
+          console.log('Evo working');
+          break;
+        default:
+          console.log('Default working');
+          break;
+      }
+
+    });
+
+  </script>
+</html>

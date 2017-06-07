@@ -1,0 +1,10 @@
+{
+  "name": "suzuki-swift-drs",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "sass-mq": "^3.2.9",
+    "simple-modal": "https://github.com/matt3188/simple-modal.git"
+  },
+  "devDependencies": {}
+}

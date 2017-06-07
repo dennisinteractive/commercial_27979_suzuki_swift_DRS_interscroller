@@ -1,0 +1,33 @@
+{
+  "flights": {
+
+    "local": {
+      "in-page-x" : "61%",
+      "in-page-y" : "-47px",
+      "background-x" : "center",
+      "background-y" : "top"
+    },
+    "15217250": {
+      "publication": "Auto Express",
+      "in-page-x" : "65.9%",
+      "in-page-y" : "-9px",
+      "background-x" : "center",
+      "background-y" : "38px"
+    },
+    "15261962": {
+      "publication": "Car buyer",
+      "in-page-x" : "50.22%",
+      "in-page-y" : "-42px",
+      "background-x" : "center",
+      "background-y" : "-20px"
+    },
+    "15217251": {
+      "publication": "Evo",
+      "in-page-x" : "50.2%",
+      "in-page-y" : "-238px",
+      "background-x" : "center",
+      "background-y" : "-87px"
+    }
+
+  }
+}

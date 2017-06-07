@@ -1,0 +1,132 @@
+/**
+ * @font-face mixin
+ * Add a custom font in one line
+ *
+ * Usage:
+ * @include fontface('family', 'font/location', 'myfontname');
+ */
+
+@mixin fontface($font-family, $font-url, $font-name, $weight: normal, $style: normal) {
+  @font-face {
+    font: {
+      family: $font-family;
+      weight: $weight;
+      style: $style;
+    }
+    src: url($font-url + '/' + $font-name + '.eot');
+    src: url($font-url + '/' + $font-name + '.eot#iefix') format('embedded-opentype'),
+         url($font-url + '/' + $font-name + '.woff2') format('woff2'),
+         url($font-url + '/' + $font-name + '.woff') format('woff'),
+         url($font-url + '/' + $font-name + '.ttf')  format('truetype'),
+         url($font-url + '/' + $font-name + '.svg#' + $font-name) format('svg');
+  }
+}
+
+/**
+ * @keyframes mixin
+ * Creates a prefixed CSS animation
+ *
+ * Usage:
+ * @include keyframes(fade-out) {
+ *   0% { opacity: 1; }
+ *   90% { opacity: 0; }
+ * }
+ */
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/**
+ * @animation mixin
+ * Uses CSS animation (see above) and adds prefixes
+ *
+ * Usage:
+ * @include animation('fade-out' 5s 3)
+ */
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+     -moz-animation: #{$str};
+      -ms-animation: #{$str};
+       -o-animation: #{$str};
+          animation: #{$str};
+}
+
+/**
+ * Centre positioning mixin
+ *
+ * Usage:
+ * @include centre('x');
+ */
+@mixin centre($axis: 'both') {
+  position:absolute;
+  @if $axis == 'y' {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $axis == 'x' {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $axis == 'both' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+/**
+ * Clearfix
+ * You know what this does right?
+ *
+ * Usage:
+ * .container-with-floated-childeren {
+ *   @extend %clearfix;
+ * }
+ */
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/**
+ * Media queries, see https://github.com/sass-mq/sass-mq
+ * Usage:
+ * .foo {
+ *   @include mq($from: mobile, $until: tablet) {
+ *     background: red;
+ *   }
+ *   @include mq($from: tablet) {
+ *     background: green;
+ *   }
+ * }
+ */
+
+$mq-breakpoints: (
+  mobile:  320px,
+  tablet:  740px,
+  desktop: 980px,
+  wide:    1300px
+);

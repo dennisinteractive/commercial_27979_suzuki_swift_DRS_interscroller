@@ -1,0 +1,101 @@
+      <!-- Skin template. NOT YOUR ADVERT -->
+      <style>
+        body { margin: 0; padding: 0; overflow-x : hidden}
+
+        #site { position: relative; margin: auto; left: 0; right: 0; width: 100%; z-index: 10; text-align: center; transition: 0.5s; }
+        #siteFrame { position: absolute; left: -50%; right: -50%; margin: auto; }
+
+        .container { width: 980px; height: 100%; position: absolute; margin: auto; top: 0; left: 0; right: 0; }
+
+        #leader { position: absolute; right: 0; margin: auto; z-index: 9; }
+        .auto-express #leader { top: 46px; left: 212px; }
+        .carbuyer #leader { top: 10px; left: 0; }
+        .evo #leader { top: 150px; left: -14px; }
+
+        #mpu { position: absolute; margin: auto; z-index: 9; }
+        .auto-express #mpu { top: 419px; right: 20px; }
+        .evo #mpu { top: 274px; right: 31px; }
+        .carbuyer #mpu { top: 322px; right: 21px; }
+
+        #advert { width: 100%; height: 100%; position: fixed; top: 0; left: 0; }
+        .slide-left { transform: translate3d(-100%,0,0); }
+
+        #toggle { position: fixed; top: 10px; left: 10px; z-index: 999; }
+
+        .evo-header { display: none; }
+        .evo .evo-header { display: block; position: absolute; top: 0; left: -50%; right: -50%; z-index: 99; max-height: 134px; margin: 0 auto; }
+        .evo #siteFrame { top: 134px; }
+      </style>
+
+      <img class="evo-header" src="../assets/evo-header.png" />
+
+      <div id="page">
+        <button id="toggle">Toggle advert</button>
+        <div id="site">
+          <img id="siteFrame" src="">
+          <div class="container">
+            <iframe id="leader" src="leaderboard.html" scrolling="no" frameborder="no" width="728" height="90" frameborder="0"></iframe>
+            <iframe id="mpu" src="mpu.html" scrolling="no" frameborder="no" width="300" height="250" frameborder="0"></iframe>
+          </div>
+        </div>
+        <iframe id="advert" src="skin.html" frameborder="0"></iframe>
+      </div>
+
+      <script>
+        var site = 'carbuyer';
+        var body = document.querySelector( 'body' );
+        var page = document.querySelector( '#site' );
+        var toggle = document.querySelector( '#toggle' );
+        var siteFrame = document.querySelector( '#siteFrame' );
+        var adOpen = false;
+
+        // Open advert with Leaderboard
+        document.getElementById('leader').onload = function() {
+          var iframe = document.getElementById('leader');
+          var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+          var form = doc.body;
+          form.addEventListener('click', function() {
+            openAd();
+          });
+        };
+        // Open advert with MPU
+        document.getElementById('mpu').onload = function() {
+          var iframe = document.getElementById('mpu');
+          var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+          var form = doc.body;
+          form.addEventListener('click', function() {
+            openAd();
+          });
+        };
+
+        toggle.addEventListener('click', openAd);
+
+        function openAd() {
+          ADTECH.show();
+          page.classList.toggle( 'slide-left' );
+          if ( !adOpen ) {
+            ADTECH.show();
+            adOpen = true;
+          } else {
+            ADTECH.hide();
+            adOpen = false;
+          }
+        }
+
+        // Add classes and background images for websites
+        siteFrame.setAttribute( 'src', '../assets/' + site + '.png' );
+        body.classList.add( site );
+
+        // Move skin iframe body down
+        if ( site === 'evo' ) {
+          document.getElementById('advert').onload = function() {
+            var iframe = document.getElementById('advert');
+            var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+            var form = doc.body;
+
+            form.classList.add('evo');
+          };
+        }
+
+      </script>
+

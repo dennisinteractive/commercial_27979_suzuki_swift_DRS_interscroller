@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= advert.name %></title>
+    <meta name="description" content="">
+    <meta name="adname" content="Ad-name">
+    <meta name="author" content="Dennis Digital Frontend">
+    <meta name="ad-size" content="width=<%= pkg.advert.adverts.leaderboard.width %>,height=<%= pkg.advert.adverts.leaderboard.height %>">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- build:css({src,.tmp}) css/leaderboard.css?__inline=true -->
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <!-- endbuild -->
+
+  </head>
+  <body class="leaderboard" style="width: <%= pkg.advert.adverts.leaderboard.width %>px; height: <%= pkg.advert.adverts.leaderboard.height %>px;">
+
+    <a href="<clicktag>" id="clickTag" target="_blank">
+      <div id="ad-container">
+        <img id="pixelTracker" src="<pixeltracker>" style="position:absolute; visibility:hidden" />
+      </div>
+    </a>
+
+  </body>
+</html>

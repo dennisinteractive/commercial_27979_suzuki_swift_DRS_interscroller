@@ -1,0 +1,59 @@
+<!doctype html public>
+<!--[if lt IE 7]> <html lang="en-us" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en-us" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en-us" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-us"> <!--<![endif]-->
+<style>
+  .ad-slot{
+    height: 250px;
+    overflow: hidden;
+    margin: 352px auto 0 auto; 
+  }
+  .ad-slot.fullWidth{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background-color: gray;
+  }
+  .ad-slot.fixed{
+    width: 970;
+  }
+  .advert-container{
+    display:table;
+    width:100%;
+    height:250px;
+    overflow:hidden;
+    position:relative;
+    background-attachment:fixed;
+    background-image:url(../images/scrolling_image.jpg);
+    background-repeat:no-repeat;
+    background-position:calc(50%) -50px;
+  }
+
+  .iframe {
+    background-color: #000;
+  }
+  
+  .cta{
+    display:table-cell;
+    vertical-align: middle;
+  }
+</style>
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+
+  <div id="page" style="margin: 0 auto; width: 100%; background-color: red;">
+    <div id="carys" class="ad-slot fixed">
+        <iframe id="carys" src="interscroller.html" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+    </div>
+    
+    <!-- <img src="../images/scrolling_image.jpg" style="position:absolute; top:0px; pointer-events: none; margin: 0 auto;"/> -->
+  </div>
+
+</body>
+</html>

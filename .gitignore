@@ -1,0 +1,11 @@
+# packages
+node_modules
+vendor
+
+# dist
+advert
+releases
+
+# temporary files
+.tmp
+css

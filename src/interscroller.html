@@ -3,17 +3,18 @@
 <meta name="ad.size" content="width=970,height=250"> 
 
 <style>
+  .ad-slot{
+    height: 250px;
+    overflow: hidden;
+    margin: 352px auto 0 auto; 
+  }
   .advert-container{
-/*        display:table;
-*/        width:100%;
-      height:250px;
-      overflow:hidden;
-/*      position:relative;
-*/  }
-/*   .advert-container .cta{
-      display:table-cell;
-      vertical-align:middle;
-  }*/
+    width:100%;
+    height:250px;
+    overflow:hidden;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
   .advert-container .element{
     position: absolute;
     display: block;
@@ -21,7 +22,7 @@
   .advert-container .logo {
     top: 0;
     right: 0;
-    background: transparent url('../images/suzuki-logo.svg') no-repeat;
+    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/suzuki-logo.svg') no-repeat;
     width: 115px;
     height: 98px;
   }
@@ -30,7 +31,7 @@
     top: 10px; 
     height: 94px;
     width: 155px;
-    background: transparent url('../images/title.svg') no-repeat;
+    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/title.svg') no-repeat;
   }
   .advert-container .cta {
     margin-left: auto;
@@ -38,11 +39,10 @@
     left: 0;
     right: 0;
     bottom: 10px;
-    background: transparent url('../images/cta.svg') no-repeat;
+    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/cta.svg') no-repeat;
     width:176px;
-    height: 35px;
+    height: 43px;
   }
- /* Tablet */
    @media screen and (min-width: 600px) {
     .advert-container .copy {
       width: 205px;
@@ -53,6 +53,8 @@
     }
     .advert-container .cta {
       right: 0;
+      left: 70%;
+      bottom: 5px;
     }
   }
   @media screen and (min-width: 700px) {
@@ -72,6 +74,11 @@
     .advert-container .logo { 
       width: 140px;
       top: 18px;
+    }
+    .advert-container .cta {
+      left: 77%;
+      height: 50px;
+      width: 195px;
     }
   }
 </style>
@@ -111,42 +118,31 @@
   iframe.style.width = '100%';
   iframe.style.height = '250px';
   iframe.style.backgroundAttachment = 'fixed';
-  iframe.style.backgroundImage = 'url(../images/suzuki-swift-bg.png)';
+  iframe.style.backgroundImage = 'url(http://ads.dennisnet.co.uk/suzuki/27979/suzuki-swift-bg.png)';
   iframe.style.backgroundRepeat = 'no-repeat';
   iframe.style.backgroundColor = '#000';
-  // iframe.style.backgroundSize = 'auto 500px';
-  // iframe.style.marginLeft = "-20px";
-  // iframe.style.marginRight = "-20px";
-  iframe.style.backgroundPosition = 'center top';
+  iframe.style.backgroundSize = '100% auto';
+  iframe.style.maxBackgroundSize = '900px';
+
+  iframe.style.backgroundPosition = 'center center';
   iframe.style.marginBottom = '1200px';
   iframe.style.minWidth = '320px';
 
-  if (window.innerWidth < 600) {
-    iframe.style.backgroundSize = 'auto 350px';
-  }
-  else {
-     iframe.style.backgroundSize = 'auto 700px';
+  if (window.innerWidth > 900) {
+    iframe.style.backgroundSize = '900px';
   }
   console.log(window.innerWidth);
-  
-  //   }else if (site.indexOf('theweek') !== -1) {
-//     if(url.href !== 'http://www.theweek.co.uk/'){
-  //console.log(containerNode);
+
   var scrolledPastPoint = false,
   scrollPoint,
   bgFixPoint;
   if(site.indexOf('carbuyer')!== -1){
     scrollPoint = 126;
     bgFixPoint = -190;
-  }else if(site.indexOf('evo')!== -1){
-    scrollPoint = 107;
-    bgFixPoint = -190;
-    iframe.style.backgroundPosition = 'calc(50%) -150px';
   }else if(site.indexOf('autoexpress')!== -1){
     scrollPoint = 192;
   }
   window.top.addEventListener('scroll', function(e) {
-    // console.log(this, window.top, e.currentTarget);
      console.log('scroll', e.currentTarget.scrollY);
     if (e.currentTarget.scrollY > scrollPoint && scrolledPastPoint === false) {
       scrolledPastPoint = true;
@@ -164,7 +160,6 @@
   });
 })();
 </script>
-
 
 </body>
 </html>

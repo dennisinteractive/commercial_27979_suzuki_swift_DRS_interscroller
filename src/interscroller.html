@@ -12,8 +12,6 @@
     width:100%;
     height:250px;
     overflow:hidden;
-    margin-left: -20px;
-    margin-right: -20px;
   }
   .advert-container .element{
     position: absolute;
@@ -30,8 +28,9 @@
     left: -1px;
     top: 10px; 
     height: 94px;
-    width: 155px;
-    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/title.svg') no-repeat;
+    width: 175px;
+    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/title.png') no-repeat;
+    background-size: 100%;
   }
   .advert-container .cta {
     margin-left: auto;
@@ -39,7 +38,8 @@
     left: 0;
     right: 0;
     bottom: 10px;
-    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/cta.svg') no-repeat;
+    background: transparent url('http://ads.dennisnet.co.uk/suzuki/27979/cta.png') no-repeat;
+    background-size: 100%;
     width:176px;
     height: 43px;
   }
@@ -84,7 +84,7 @@
 </style>
 </head>
 <body data-cache="%%CACHEBUSTER%%"> 
-    <a href="%%CLICK_URL_UNESC%%" target="_blank"> 
+    <a href="%%CLICK_URL_ESC%%%%DEST_URL%%" target="_blank"> 
         <div class="advert-container">
           <div class="element logo"></div>
           <div class="element copy"></div>
@@ -93,71 +93,76 @@
     </a> 
 
 <script>
+!function(e,n,t){function o(e,n){return typeof e===n}function s(){var e,n,t,s,a,i,r;for(var l in c)if(c.hasOwnProperty(l)){if(e=[],n=c[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(s=o(n.fn,"function")?n.fn():n.fn,a=0;a<e.length;a++)i=e[a],r=i.split("."),1===r.length?Modernizr[r[0]]=s:(!Modernizr[r[0]]||Modernizr[r[0]]instanceof Boolean||(Modernizr[r[0]]=new Boolean(Modernizr[r[0]])),Modernizr[r[0]][r[1]]=s),f.push((s?"":"no-")+r.join("-"))}}function a(e){var n=u.className,t=Modernizr._config.classPrefix||"";if(p&&(n=n.baseVal),Modernizr._config.enableJSClass){var o=new RegExp("(^|\\s)"+t+"no-js(\\s|$)");n=n.replace(o,"$1"+t+"js$2")}Modernizr._config.enableClasses&&(n+=" "+t+e.join(" "+t),p?u.className.baseVal=n:u.className=n)}function i(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):p?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function r(){var e=n.body;return e||(e=i(p?"svg":"body"),e.fake=!0),e}function l(e,t,o,s){var a,l,f,c,d="modernizr",p=i("div"),h=r();if(parseInt(o,10))for(;o--;)f=i("div"),f.id=s?s[o]:d+(o+1),p.appendChild(f);return a=i("style"),a.type="text/css",a.id="s"+d,(h.fake?h:p).appendChild(a),h.appendChild(p),a.styleSheet?a.styleSheet.cssText=e:a.appendChild(n.createTextNode(e)),p.id=d,h.fake&&(h.style.background="",h.style.overflow="hidden",c=u.style.overflow,u.style.overflow="hidden",u.appendChild(h)),l=t(p,e),h.fake?(h.parentNode.removeChild(h),u.style.overflow=c,u.offsetHeight):p.parentNode.removeChild(p),!!l}var f=[],c=[],d={_version:"3.5.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){c.push({name:e,fn:n,options:t})},addAsyncTest:function(e){c.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=d,Modernizr=new Modernizr;var u=n.documentElement,p="svg"===u.nodeName.toLowerCase(),h=d._config.usePrefixes?" -webkit- -moz- -o- -ms- ".split(" "):["",""];d._prefixes=h;var m=d.testStyles=l;Modernizr.addTest("touchevents",function(){var t;if("ontouchstart"in e||e.DocumentTouch&&n instanceof DocumentTouch)t=!0;else{var o=["@media (",h.join("touch-enabled),("),"heartz",")","{#modernizr{top:9px;position:absolute}}"].join("");m(o,function(e){t=9===e.offsetTop})}return t}),s(),a(f),delete d.addTest,delete d.addAsyncTest;for(var v=0;v<Modernizr._q.length;v++)Modernizr._q[v]();e.Modernizr=Modernizr}(window,document);
 (function() {
 
-  var name = "carys";
+  // Fix for ad to working locally - delete before putting in dfp
+  var name = "carys"; 
   var iframe = window.parent.document.getElementById(name);
   var containerNode = (iframe === null) ? null : iframe.parentNode;
   var site = window.top.location.hostname;
   var url = window.top.location;
-
   console.log(iframe);
   var backPosY = iframe.style.backgroundPositionY;
   var advert = document.querySelector('.advert-container');
-
   console.log("Background position  is:", backPosY);
-    
+
+  //Un-comment this code to have it work in dfp 
+  // var name = window.name,
+  //     iframe = window.parent.document.getElementById(name),
+  //     containerNode = (iframe === null) ? null : iframe.parentNode;
+  //     site = window.top.location.hostname,
+  //     url = window.top.location,
+  //     backPosY = iframe.style.backgroundPositionY,
+  //     advert = document.querySelector('.advert-container');
+  //     console.log("Background position  is:", backPosY);  
   
+  // Ohh some styling
   if (containerNode === null) return null;
   containerNode.style.height = '250px';
   containerNode.style.marginBottom = '1.5em';
   containerNode.style.width = '100%';
   containerNode.style.maxWidth = '980px';
-  
-
-  iframe.style.width = '100%';
+  iframe.style.width = 'calc(100% + 1.4em)';
+  iframe.style.margin = '0 -1em';
   iframe.style.height = '250px';
   iframe.style.backgroundAttachment = 'fixed';
   iframe.style.backgroundImage = 'url(http://ads.dennisnet.co.uk/suzuki/27979/suzuki-swift-bg.png)';
-  iframe.style.backgroundRepeat = 'no-repeat';
+  iframe.style.backgroundRepeat = 'no-repeat'; 
   iframe.style.backgroundColor = '#000';
-  iframe.style.backgroundSize = '100% auto';
-  iframe.style.maxBackgroundSize = '900px';
-
-  iframe.style.backgroundPosition = 'center center';
-  iframe.style.marginBottom = '1200px';
+  iframe.style.backgroundSize = '34em auto';
+  iframe.style.maxBackgroundSize = '900px'; 
+  iframe.style.backgroundPosition = 'top center';
   iframe.style.minWidth = '320px';
-
+  
+  // If window size is greater than 900px:
   if (window.innerWidth > 900) {
     iframe.style.backgroundSize = '900px';
   }
-  console.log(window.innerWidth);
-
-  var scrolledPastPoint = false,
-  scrollPoint,
-  bgFixPoint;
-  if(site.indexOf('carbuyer')!== -1){
-    scrollPoint = 126;
-    bgFixPoint = -190;
-  }else if(site.indexOf('autoexpress')!== -1){
-    scrollPoint = 192;
+  // If window size is greater than 900px:
+  if (window.innerWidth < 760) {
+    iframe.style.backgroundSize = '600px';
+    iframe.style.backgroundPosition = 'center center';
+    iframe.style.width = '100%';
+    iframe.style.backgroundAttachment = 'scroll';
   }
-  window.top.addEventListener('scroll', function(e) {
-     console.log('scroll', e.currentTarget.scrollY);
-    if (e.currentTarget.scrollY > scrollPoint && scrolledPastPoint === false) {
-      scrolledPastPoint = true;
-      iframe.style.backgroundAttachment = 'scroll';
-      iframe.style.backgroundPosition = 'calc(50%) '+bgFixPoint+'px';
-    } else if (e.currentTarget.scrollY < scrollPoint && scrolledPastPoint === true) {
-        scrolledPastPoint = false;
-      iframe.style.backgroundAttachment = 'fixed';
-      if(site.indexOf('evo')!== -1){
-        iframe.style.backgroundPosition = 'calc(50%) -150px;';
-      }else{
-        iframe.style.backgroundPosition = 'calc(50%) top';
-      }
-    }
-  });
+
+  if (iframe.contentDocument.children[0].classList.contains("touchevents")) {
+    alert("its working!");
+    iframe.style.backgroundAttachment = 'scroll';
+    iframe.style.backgroundSize = '600px';
+    iframe.style.backgroundPosition = 'center center';
+    iframe.style.width = '100%';
+    iframe.style.backgroundColor = '#000';
+  }
+
+  // userAgent to detect devices and stopped the background image from being fixed
+  // if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  //   iframe.style.backgroundAttachment = 'scroll';
+  //   iframe.style.backgroundSize = '600px';
+  //   iframe.style.backgroundPosition = 'center center';
+  //   iframe.style.width = '100%';
+  // }
 })();
 </script>
 
